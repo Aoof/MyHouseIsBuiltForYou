@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e38fafd3ff24dc4b369c63d9192500, type: 3}
-  m_Name: Option_BaseFrame
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptions
-  changeString: Change String
-  destroyString: Destroy String
+  m_Script: {fileID: 11500000, guid: 4d058de9fe1cf7bc6970694b19605fec, type: 3}
+  m_Name: SampleResult
+  m_EditorClassIdentifier: Assembly-CSharp::JudgementResult
+  partnerText: 

@@ -67,6 +67,11 @@ public class PointsSystem : MonoBehaviour
         }
     }
 
+    public void CheckResults()
+    {
+        
+    }
+
     public void ResetInteractables()
     {
         InteractableObject[] interactables = FindObjectsByType<InteractableObject>(FindObjectsSortMode.None);

@@ -16,12 +16,13 @@ public class JudgementCanvas : MonoBehaviour
 
     public void StartJudgement()
     {
-        //partnerText.text = 
         uIManager.ShowJudgement();
+        //partnerText.text = 
     }
 
     public void StartNextDay()
     {
+        uIManager.HideAll();
         pointsSystem.StartNewDay();
     }
 }
