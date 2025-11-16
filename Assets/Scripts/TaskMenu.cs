@@ -133,4 +133,12 @@ public class TaskMenu : MonoBehaviour
             UIManager.instance.HideAll();
         }
     }
+
+    public void ShowTaskMenu(bool readOnly = false)
+    {
+        UIManager.instance.ShowTaskMenu();
+        selectedTask = "";
+        isReadOnly = readOnly;
+    }
+
 }

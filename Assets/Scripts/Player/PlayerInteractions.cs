@@ -90,10 +90,10 @@ public class PlayerInteractions : MonoBehaviour
                     DialogueManager dm = FindFirstObjectByType<DialogueManager>();
                     dm.interactableObject = latestInteractable;
                     dm.dialogueTask = tm.selectedTask;
-                    ui.ShowDialogue();
+                    dm.ShowDialogue();
                 };
                 playerUi.showInteract = false;
-                ui.ShowTaskMenu();
+                tm.ShowTaskMenu();
             }
         }
     }
