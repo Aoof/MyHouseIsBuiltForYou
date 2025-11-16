@@ -652,6 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40862675d23e21bfea9367bef6b6f2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyButton
+  dialogueManager: {fileID: 0}
 --- !u!1 &929859043
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,8 +737,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1018,8 +1019,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1373,8 +1374,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ea7620d1dddf0588ba4903448fa232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  objectSelected: {fileID: 0}
+  interactableObject: {fileID: 0}
   dialogueTitle: 
+  dialogueTask: 
   textChange: 
   textDiscard: 
   textNothing: 
@@ -1465,8 +1467,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
