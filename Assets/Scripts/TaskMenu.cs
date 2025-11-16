@@ -64,6 +64,7 @@ public class TaskMenu : MonoBehaviour
     void OnEnable()
     {
         selectedTask = "";
+        isReadOnly = false;
         UpdateButtons();
         
         // Update ObjectTitle
@@ -84,7 +85,7 @@ public class TaskMenu : MonoBehaviour
         }
     }
 
-    void UpdateButtons()
+    public void UpdateButtons()
     {
         for (int i = 0; i < taskButtons.Length && i < pointsSystem.availableTasks.Count; i++)
         {

@@ -1,4 +1,4 @@
-using System.Data.Common;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +6,7 @@ public class PlayerInteractions : MonoBehaviour
 {
     public PlayerUI playerUi;
     private int interactableCollisionCount = 0;
+    private List<InteractableObject> currentColliding = new List<InteractableObject>();
 
     public InteractableObject latestInteractable;
 
@@ -31,12 +32,14 @@ public class PlayerInteractions : MonoBehaviour
         if (other.CompareTag("InteractableCollider"))
         {
             Transform parent = other.transform.parent;
-            if (parent.GetComponent<InteractableObject>().isInteractable)
+            InteractableObject io = parent.GetComponent<InteractableObject>();
+            if (io.isInteractable && !currentColliding.Contains(io))
             {
+                currentColliding.Add(io);
                 interactableCollisionCount++;
                 playerUi.showInteract = true;
                 if (latestInteractable) latestInteractable.isSelected = false;
-                latestInteractable = parent.GetComponent<InteractableObject>();
+                latestInteractable = io;
                 latestInteractable.isSelected = true;
             }
         }
@@ -47,14 +50,25 @@ public class PlayerInteractions : MonoBehaviour
         if (other.CompareTag("InteractableCollider"))
         {
             Transform parent = other.transform.parent;
-            if (parent.GetComponent<InteractableObject>().isInteractable)
+            InteractableObject io = parent.GetComponent<InteractableObject>();
+            if (io.isInteractable && currentColliding.Contains(io))
             {
+                currentColliding.Remove(io);
                 interactableCollisionCount--;
                 if (interactableCollisionCount == 0)
                 {
                     playerUi.showInteract = false;
                     latestInteractable.isSelected = false;
                     latestInteractable = null;
+                }
+                else
+                {
+                    if (latestInteractable == io)
+                    {
+                        latestInteractable.isSelected = false;
+                        latestInteractable = currentColliding[currentColliding.Count - 1];
+                        latestInteractable.isSelected = true;
+                    }
                 }
             }
         }
@@ -66,19 +80,20 @@ public class PlayerInteractions : MonoBehaviour
 
         if (interactAction.WasPressedThisFrame() && interactAction.IsPressed())
         {
-            if (latestInteractable != null && latestInteractable.GetComponent<InteractableObject>().isInteractable)
+            if (latestInteractable != null && latestInteractable.isInteractable)
             {
-                // Show task menu first
+                                // Show task menu first
                 TaskMenu tm = FindFirstObjectByType<TaskMenu>();
+                UIManager ui = FindFirstObjectByType<UIManager>();
                 tm.onTaskSelected = () =>
                 {
                     DialogueManager dm = FindFirstObjectByType<DialogueManager>();
                     dm.interactableObject = latestInteractable;
                     dm.dialogueTask = tm.selectedTask;
-                    dm.ShowDialogue();
+                    ui.ShowDialogue();
                 };
-                tm.isReadOnly = false;
-                UIManager.instance.ShowTaskMenu();
+                playerUi.showInteract = false;
+                ui.ShowTaskMenu();
             }
         }
     }

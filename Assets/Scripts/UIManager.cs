@@ -70,6 +70,7 @@ public class UIManager : MonoBehaviour
         {
             taskMenu.SetActive(true);
             taskManager.isReadOnly = true;
+            taskManager.UpdateButtons();
         }
         isInUI = true;
         UnlockMouse();
@@ -107,7 +108,10 @@ public class UIManager : MonoBehaviour
             }
             yield return null;
         }
-        HideAll();
+        if (taskMenu.activeSelf && taskManager.isReadOnly)
+        {
+            HideAll();
+        }
     }
 
     public void ShowJudgement()
@@ -138,6 +142,7 @@ public class UIManager : MonoBehaviour
     {
         if (taskMenu != null) taskMenu.SetActive(false);
         if (dialogue != null) dialogue.SetActive(false);
+        if (judgement != null) judgement.SetActive(false);
         if (dayText != null) dayText.gameObject.SetActive(false);
         isInUI = false;
         LockMouse();
@@ -147,7 +152,6 @@ public class UIManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Debug.Log("Mouse unlocked: lockState = " + Cursor.lockState + ", visible = " + Cursor.visible);
         if (interactAction != null) interactAction.Disable();
         if (moveAction != null) moveAction.Disable();
         if (lookAction != null) lookAction.Disable();
