@@ -37,6 +37,10 @@ public class PointsSystem : MonoBehaviour
 
     public JudgementCanvas judgementCanvas;
 
+    public Dictionary<string, bool> dailyTaskResults;
+    public int dayScore;
+    public int totalScore;
+
     void Awake()
     {
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
@@ -69,7 +73,16 @@ public class PointsSystem : MonoBehaviour
 
     public void CheckResults()
     {
-        
+        foreach (string taskName in availableTasks)
+        {
+            foreach (ActionStruct action in stateHistory[currentDay].Day)
+            {
+                if (action.TaskName == taskName)
+                {
+                    
+                }
+            }
+        }
     }
 
     public void ResetInteractables()

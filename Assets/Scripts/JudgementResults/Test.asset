@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d058de9fe1cf7bc6970694b19605fec, type: 3}
-  m_Name: SampleResult
+  m_Name: Test
   m_EditorClassIdentifier: Assembly-CSharp::JudgementResult
   partnerText: 
   tasksToSolve: []
