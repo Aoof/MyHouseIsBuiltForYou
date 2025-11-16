@@ -114,5 +114,10 @@ public class TaskMenu : MonoBehaviour
         {
             onTaskSelected?.Invoke();
         }
+        else
+        {
+            // No task selected, return to game
+            UIManager.instance.HideAll();
+        }
     }
 }

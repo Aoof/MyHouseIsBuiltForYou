@@ -34,7 +34,9 @@ public class PlayerInteractions : MonoBehaviour
             {
                 interactableCollisionCount++;
                 playerUi.showInteract = true;
+                if (latestInteractable) latestInteractable.isSelected = false;
                 latestInteractable = parent.GetComponent<InteractableObject>();
+                latestInteractable.isSelected = true;
             }
         }
     }
@@ -50,6 +52,7 @@ public class PlayerInteractions : MonoBehaviour
                 if (interactableCollisionCount == 0)
                 {
                     playerUi.showInteract = false;
+                    latestInteractable.isSelected = false;
                     latestInteractable = null;
                 }
             }

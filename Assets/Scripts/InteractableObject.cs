@@ -4,6 +4,8 @@ using UnityEngine.UIElements.Experimental;
 public class InteractableObject : MonoBehaviour
 {
     public bool isInteractable = false;
+    public bool isSelected = false;
+    [SerializeField] private GameObject highlightSphere;
     private PointsSystem.ObjectState currentState = PointsSystem.ObjectState.Unchanged;
     public GameObject currentVariant;
     [Header("Variants")]
@@ -38,12 +40,26 @@ public class InteractableObject : MonoBehaviour
         get { return currentState; }
     }
 
+    public void ResetState()
+    {
+        currentState = PointsSystem.ObjectState.Unchanged;
+    }
+
     void Awake()
     {
         dialogueManager = FindFirstObjectByType<DialogueManager>();
         pointsSystem = FindFirstObjectByType<PointsSystem>();
         currentVariant = baseVariant;
+        isSelected = false;
         UpdateVariants();
+    }
+
+    void Update()
+    {
+        if (highlightSphere != null)
+        {
+            highlightSphere.SetActive(isSelected && isInteractable);
+        }
     }
 
     void UpdateVariants()
@@ -77,7 +93,7 @@ public class InteractableObject : MonoBehaviour
         {
             currentVariant = changedVariants[index + 1];
             UpdateVariants();
-        } else if (currentState == PointsSystem.ObjectState.Unchanged)
+        } else if (currentState == PointsSystem.ObjectState.Unchanged && currentVariant != destroyedVariant)
         {
             currentVariant = changedVariants[0];
             UpdateVariants();

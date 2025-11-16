@@ -9,10 +9,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playerUi;
     [SerializeField] private GameObject taskMenu;
     [SerializeField] private GameObject dialogue;
+    [SerializeField] private GameObject judgement;
 
     private Canvas playerCanvas;
     private Canvas taskCanvas;
     private Canvas dialogueCanvas;
+    private Canvas judgementCanvas;
 
     public bool isInUI { get; private set; }
 
@@ -32,6 +34,7 @@ public class UIManager : MonoBehaviour
         // Find UI references if not assigned
         if (taskMenu == null) taskMenu = FindFirstObjectByType<TaskMenu>()?.gameObject;
         if (dialogue == null) dialogue = FindFirstObjectByType<DialogueManager>()?.dialoguePanel;
+        if (judgement == null) judgement = FindFirstObjectByType<JudgementCanvas>()?.gameObject;
         // Get canvases
         playerCanvas = playerUi?.GetComponent<Canvas>();
         taskCanvas = taskMenu?.GetComponent<Canvas>();
@@ -59,10 +62,19 @@ public class UIManager : MonoBehaviour
         UnlockMouse();
     }
 
+    public void ShowJudgement()
+    {
+        HideAll();
+        if (judgement != null) judgement.SetActive(true);
+        isInUI = true;
+        UnlockMouse();
+    }
+
     public void HideAll()
     {
         if (taskMenu != null) taskMenu.SetActive(false);
         if (dialogue != null) dialogue.SetActive(false);
+        if (judgement != null) judgement.SetActive(false);
         isInUI = false;
         LockMouse();
     }
