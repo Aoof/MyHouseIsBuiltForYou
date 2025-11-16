@@ -315,7 +315,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.51140976, b: 0.48627448, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0.709434, b: 0.5849056, a: 1}
     m_PressedColor: {r: 1, g: 0.90205026, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 1, g: 0.8177221, b: 0.58431375, a: 1}
@@ -821,7 +821,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.51140976, b: 0.48627448, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0.709434, b: 0.5849056, a: 1}
     m_PressedColor: {r: 1, g: 0.90205026, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 1, g: 0.8177221, b: 0.58431375, a: 1}
@@ -1082,7 +1082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.1192, y: 125}
+  m_AnchoredPosition: {x: -1.1192, y: 90}
   m_SizeDelta: {x: 599.9288, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1625512006
@@ -1114,8 +1114,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278229247
-  m_fontColor: {r: 1, g: 0.5958981, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
