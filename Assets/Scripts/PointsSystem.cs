@@ -31,7 +31,17 @@ public class PointsSystem : MonoBehaviour
     public int currentActions = 0;
 
     [Header("Tasks")]
-    public List<string> availableTasks = new() { "Clean the apartment", "Fix the laptop", "Organize the fridge", "Change the boot", "Destroy condoms" };
+    [SerializeField] private DayTasks[] dayTasks;
+    public List<string> availableTasks => GetAvailableTasks();
+
+    private List<string> GetAvailableTasks()
+    {
+        if (dayTasks == null || currentDay >= dayTasks.Length || dayTasks[currentDay] == null)
+        {
+            return new List<string>();
+        }
+        return dayTasks[currentDay].tasks;
+    }
 
     public GameObject[] interactables;
 
@@ -66,7 +76,6 @@ public class PointsSystem : MonoBehaviour
         currentActions++;
         if (currentActions >= tasksQuantity)
         {
-            // End day, start new day
             judgementCanvas.StartJudgement();
         }
     }

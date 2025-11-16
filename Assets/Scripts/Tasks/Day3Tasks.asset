@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3266d77bf8cb11c9964a942114afef, type: 3}
-  m_Name: SampleTask
-  m_EditorClassIdentifier: Assembly-CSharp::Task
-  taskName: 
-  objectName: 
-  objectState: 0
+  m_Script: {fileID: 11500000, guid: d1a10604ba068476789e9bbbcf6c51bc, type: 3}
+  m_Name: Day3Tasks
+  m_EditorClassIdentifier: Assembly-CSharp::DayTasks
+  tasks: []
