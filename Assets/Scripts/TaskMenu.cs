@@ -68,7 +68,7 @@ public class TaskMenu : MonoBehaviour
         UpdateButtons();
         
         // Update ObjectTitle
-        objectTitle.text = playerInteractions.latestInteractable.gameObject.name;
+        //objectTitle.text = playerInteractions.latestInteractable.gameObject.name;
     }
 
     private void ResizeButton(GameObject button)
