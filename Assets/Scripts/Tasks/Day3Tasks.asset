@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a10604ba068476789e9bbbcf6c51bc, type: 3}
   m_Name: Day3Tasks
   m_EditorClassIdentifier: Assembly-CSharp::DayTasks
-  tasks: []
+  tasks:
+  - Hm. Not that approachable.
+  - He has needs, don't you know? Why not try something new?
+  - You're a fake. Stop pretending.
+  - By taking care of yourself, you're taking care of others. Don't take up too much
+    space.

@@ -7,15 +7,18 @@ public class TaskMenu : MonoBehaviour
 {
     [Header("References")]
     public PointsSystem pointsSystem;
+    public PlayerInteractions playerInteractions;
     [Header("UI Elements")]
     [SerializeField] private Button[] taskButtons;
     [SerializeField] private Button confirmButton;
+    [SerializeField] private TextMeshProUGUI objectTitle;
 
     float maxButtonWidth;
 
     [NonSerialized]
     public string selectedTask = "";
     public Action onTaskSelected;
+    public bool isReadOnly = false;
 
     void Start()
     {
@@ -50,13 +53,22 @@ public class TaskMenu : MonoBehaviour
         }
         confirmButton.GetComponentInChildren<TextMeshProUGUI>().text = "Confirm";
         confirmButton.onClick.AddListener(OnConfirm);
+        confirmButton.gameObject.SetActive(!isReadOnly);
         UpdateButtons();
+    }
+
+    void Awake()
+    {
+        if (playerInteractions == null) playerInteractions = FindFirstObjectByType<PlayerInteractions>();
     }
 
     void OnEnable()
     {
         selectedTask = "";
         UpdateButtons();
+        
+        // Update ObjectTitle
+        objectTitle.text = playerInteractions.latestInteractable.gameObject.name;
     }
 
     private void ResizeButton(GameObject button)
@@ -89,12 +101,13 @@ public class TaskMenu : MonoBehaviour
                     imageComponent.color = Color.white;
                 }
             }
+            taskButtons[i].interactable = !isReadOnly;
         }
+        confirmButton.interactable = !isReadOnly;
     }
 
     void OnTaskButtonClicked(int index)
     {
-        Debug.Log("Clicked on Task Button " + index);
         string task = pointsSystem.availableTasks[index];
         if (selectedTask == task)
         {
@@ -109,7 +122,6 @@ public class TaskMenu : MonoBehaviour
 
     void OnConfirm()
     {
-        Debug.Log("Clicked on Confirm");
         if (!string.IsNullOrEmpty(selectedTask))
         {
             onTaskSelected?.Invoke();

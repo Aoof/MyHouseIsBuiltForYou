@@ -43,7 +43,6 @@ public class DialogueManager : MonoBehaviour
     {
         UIManager ui = FindFirstObjectByType<UIManager>();
         ui.ShowDialogue();
-        Cursor.lockState = CursorLockMode.None;
         DialogueOptions options = interactableObject.GetCurrentOptions();
         Debug.Log("Dialogue Options: ", options);
         if (options != null)
@@ -77,7 +76,6 @@ public class DialogueManager : MonoBehaviour
     {
         UIManager ui = FindFirstObjectByType<UIManager>();
         ui.HideAll();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OnChangeClicked()

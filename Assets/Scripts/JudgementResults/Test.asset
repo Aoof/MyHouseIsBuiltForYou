@@ -12,5 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d058de9fe1cf7bc6970694b19605fec, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: Assembly-CSharp::JudgementResult
-  partnerText: 
-  tasksToSolve: []
+  partnerText: You didn;t listen to me
+  objectName_1: 
+  taskName_1: 
+  objectState_1: 0
+  objectName_2: 
+  taskName_2: 
+  objectState_2: 0
+  objectName_3: 
+  taskName_3: 
+  objectState_3: 0
+  objectName_4: 
+  taskName_4: 
+  objectState_4: 0
+  objectName_5: 
+  taskName_5: 
+  objectState_5: 0

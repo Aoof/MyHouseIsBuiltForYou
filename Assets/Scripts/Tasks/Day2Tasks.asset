@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a10604ba068476789e9bbbcf6c51bc, type: 3}
   m_Name: Day2Tasks
   m_EditorClassIdentifier: Assembly-CSharp::DayTasks
-  tasks: []
+  tasks:
+  - Make yourself more approachable.
+  - What a nice, romantic day. You know what that means. Don't withhold it.
+  - They are a jealous bunch. They want you to end up alone. Stop listening to them.
+  - Maybe throw them out, clear out the space for something more appropriate?

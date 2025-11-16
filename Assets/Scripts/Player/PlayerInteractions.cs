@@ -6,7 +6,7 @@ public class PlayerInteractions : MonoBehaviour
     public PlayerUI playerUi;
     private int interactableCollisionCount = 0;
 
-    private InteractableObject latestInteractable;
+    public InteractableObject latestInteractable;
 
     private InputAction interactAction;
 

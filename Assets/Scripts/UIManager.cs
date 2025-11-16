@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,8 +9,10 @@ public class UIManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject playerUi;
     [SerializeField] private GameObject taskMenu;
+    [SerializeField] private TaskMenu taskManager;
     [SerializeField] private GameObject dialogue;
     [SerializeField] private GameObject judgement;
+    [SerializeField] private TMPro.TextMeshProUGUI dayText;
 
     private Canvas playerCanvas;
     private Canvas taskCanvas;
@@ -21,6 +24,7 @@ public class UIManager : MonoBehaviour
     private InputAction interactAction;
     private InputAction moveAction;
     private InputAction lookAction;
+    private InputAction escapeAction;
 
     void Awake()
     {
@@ -43,13 +47,70 @@ public class UIManager : MonoBehaviour
         interactAction = InputSystem.actions.FindAction("Interact");
         moveAction = InputSystem.actions.FindAction("Move");
         lookAction = InputSystem.actions.FindAction("Look");
+        escapeAction = InputSystem.actions.FindAction("Escape");
         HideAll();
     }
 
     public void ShowTaskMenu()
     {
         HideAll();
+        taskManager.GetComponent<TaskMenu>().isReadOnly = false;
         if (taskMenu != null) taskMenu.SetActive(true);
+        isInUI = true;
+        UnlockMouse();
+    }
+
+    public void ShowTaskMenuReadOnly()
+    {
+        HideAll();
+        if (taskManager != null)
+        {
+            taskMenu.SetActive(true);
+            taskManager.GetComponent<TaskMenu>().isReadOnly = true;
+        }
+        isInUI = true;
+        UnlockMouse();
+    }
+
+    public void ShowDayText(int dayNumber)
+    {
+        HideAll();
+        if (dayText != null)
+        {
+            dayText.gameObject.SetActive(true);
+            dayText.text = $"Day {dayNumber + 1}";
+        }
+        isInUI = true;
+        UnlockMouse();
+    }
+
+    public void StartDaySequence(int dayNumber)
+    {
+        StartCoroutine(DaySequenceCoroutine(dayNumber));
+    }
+
+    private IEnumerator DaySequenceCoroutine(int dayNumber)
+    {
+        ShowDayText(dayNumber);
+        yield return new WaitForSeconds(2f); // Show day for 2 seconds
+        ShowTaskMenuReadOnly();
+        float timer = 0f;
+        while (timer < 5f) // Show for 5 seconds or until escape
+        {
+            timer += Time.deltaTime;
+            if (escapeAction != null && escapeAction.WasPressedThisFrame())
+            {
+                break;
+            }
+            yield return null;
+        }
+        HideAll();
+    }
+
+    public void ShowJudgement()
+    {
+        HideAll();
+        if (judgement != null) judgement.SetActive(true);
         isInUI = true;
         UnlockMouse();
     }
@@ -62,19 +123,11 @@ public class UIManager : MonoBehaviour
         UnlockMouse();
     }
 
-    public void ShowJudgement()
-    {
-        HideAll();
-        if (judgement != null) judgement.SetActive(true);
-        isInUI = true;
-        UnlockMouse();
-    }
-
     public void HideAll()
     {
         if (taskMenu != null) taskMenu.SetActive(false);
         if (dialogue != null) dialogue.SetActive(false);
-        if (judgement != null) judgement.SetActive(false);
+        if (dayText != null) dayText.gameObject.SetActive(false);
         isInUI = false;
         LockMouse();
     }
@@ -86,6 +139,7 @@ public class UIManager : MonoBehaviour
         if (interactAction != null) interactAction.Disable();
         if (moveAction != null) moveAction.Disable();
         if (lookAction != null) lookAction.Disable();
+        if (escapeAction != null) escapeAction.Enable();
     }
 
     private void LockMouse()
@@ -95,5 +149,6 @@ public class UIManager : MonoBehaviour
         if (interactAction != null) interactAction.Enable();
         if (moveAction != null) moveAction.Enable();
         if (lookAction != null) lookAction.Enable();
+        if (escapeAction != null) escapeAction.Disable();
     }
 }

@@ -17,7 +17,7 @@ public class JudgementCanvas : MonoBehaviour
     public void StartJudgement()
     {
         uIManager.ShowJudgement();
-        //partnerText.text = 
+        partnerText.text = pointsSystem.GetJudgementText();
     }
 
     public void StartNextDay()

@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a10604ba068476789e9bbbcf6c51bc, type: 3}
   m_Name: Day4Tasks
   m_EditorClassIdentifier: Assembly-CSharp::DayTasks
-  tasks: []
+  tasks:
+  - He has needs. So, give in. Let go.
+  - Stop this. Don't advertise yourself.
+  - You are too closed off, huddled in that little space you've built for yourself.
+    Isn't this a shared house?
