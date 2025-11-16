@@ -37,12 +37,15 @@ public class UIManager : MonoBehaviour
         if (playerUi != null) playerUi.SetActive(true);
         // Find UI references if not assigned
         if (taskMenu == null) taskMenu = FindFirstObjectByType<TaskMenu>()?.gameObject;
+        if (taskManager == null) taskManager = FindFirstObjectByType<TaskMenu>();
+        if (taskMenu == null && taskManager != null) taskMenu = taskManager.gameObject;
         if (dialogue == null) dialogue = FindFirstObjectByType<DialogueManager>()?.dialoguePanel;
         if (judgement == null) judgement = FindFirstObjectByType<JudgementCanvas>()?.gameObject;
         // Get canvases
         playerCanvas = playerUi?.GetComponent<Canvas>();
         taskCanvas = taskMenu?.GetComponent<Canvas>();
         dialogueCanvas = dialogue?.GetComponent<Canvas>();
+        judgementCanvas = judgement?.GetComponent<Canvas>();
         // Find input actions
         interactAction = InputSystem.actions.FindAction("Interact");
         moveAction = InputSystem.actions.FindAction("Move");
@@ -54,7 +57,7 @@ public class UIManager : MonoBehaviour
     public void ShowTaskMenu()
     {
         HideAll();
-        taskManager.GetComponent<TaskMenu>().isReadOnly = false;
+        taskManager.isReadOnly = false;
         if (taskMenu != null) taskMenu.SetActive(true);
         isInUI = true;
         UnlockMouse();
@@ -66,7 +69,7 @@ public class UIManager : MonoBehaviour
         if (taskManager != null)
         {
             taskMenu.SetActive(true);
-            taskManager.GetComponent<TaskMenu>().isReadOnly = true;
+            taskManager.isReadOnly = true;
         }
         isInUI = true;
         UnlockMouse();

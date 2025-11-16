@@ -41,10 +41,8 @@ public class DialogueManager : MonoBehaviour
     // Called when player interacts with an object
     public void ShowDialogue()
     {
-        UIManager ui = FindFirstObjectByType<UIManager>();
-        ui.ShowDialogue();
+        UIManager.instance.ShowDialogue();
         DialogueOptions options = interactableObject.GetCurrentOptions();
-        Debug.Log("Dialogue Options: ", options);
         if (options != null)
         {
             buttonChange.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = options.changeString;
@@ -74,8 +72,7 @@ public class DialogueManager : MonoBehaviour
 
     public void HideDialogue()
     {
-        UIManager ui = FindFirstObjectByType<UIManager>();
-        ui.HideAll();
+        UIManager.instance.HideAll();
     }
 
     public void OnChangeClicked()

@@ -5,7 +5,6 @@ using System.Collections;
 public class JudgementCanvas : MonoBehaviour
 {
     public PointsSystem pointsSystem;
-    public UIManager uIManager;
 
     public TextMeshProUGUI partnerText;
 
@@ -14,12 +13,11 @@ public class JudgementCanvas : MonoBehaviour
     void Awake()
     {
         if (pointsSystem == null) pointsSystem = FindFirstObjectByType<PointsSystem>();
-        if (uIManager == null) uIManager = FindFirstObjectByType<UIManager>();
     }
 
     public void StartJudgement()
     {
-        uIManager.ShowJudgement();
+        UIManager.instance.ShowJudgement();
         partnerText.text = pointsSystem.GetJudgementText();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -34,7 +32,7 @@ public class JudgementCanvas : MonoBehaviour
 
     public void StartNextDay()
     {
-        uIManager.HideAll();
+        UIManager.instance.HideAll();
         pointsSystem.StartNewDay();
     }
 }

@@ -1,3 +1,4 @@
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -69,7 +70,6 @@ public class PlayerInteractions : MonoBehaviour
             {
                 // Show task menu first
                 TaskMenu tm = FindFirstObjectByType<TaskMenu>();
-                UIManager ui = FindFirstObjectByType<UIManager>();
                 tm.onTaskSelected = () =>
                 {
                     DialogueManager dm = FindFirstObjectByType<DialogueManager>();
@@ -77,7 +77,8 @@ public class PlayerInteractions : MonoBehaviour
                     dm.dialogueTask = tm.selectedTask;
                     dm.ShowDialogue();
                 };
-                ui.ShowTaskMenu();
+                tm.isReadOnly = false;
+                UIManager.instance.ShowTaskMenu();
             }
         }
     }

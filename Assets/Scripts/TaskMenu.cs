@@ -53,7 +53,6 @@ public class TaskMenu : MonoBehaviour
         }
         confirmButton.GetComponentInChildren<TextMeshProUGUI>().text = "Confirm";
         confirmButton.onClick.AddListener(OnConfirm);
-        confirmButton.gameObject.SetActive(!isReadOnly);
         UpdateButtons();
     }
 
@@ -103,6 +102,7 @@ public class TaskMenu : MonoBehaviour
             }
             taskButtons[i].interactable = !isReadOnly;
         }
+        confirmButton.gameObject.SetActive(!isReadOnly);
         confirmButton.interactable = !isReadOnly;
     }
 
