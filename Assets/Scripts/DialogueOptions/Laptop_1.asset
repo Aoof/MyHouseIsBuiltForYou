@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e38fafd3ff24dc4b369c63d9192500, type: 3}
+  m_Name: Laptop_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptions
+  changeString: '[Change]: I want to play Moongrass Hills, but there''s no time...
+    First, I need to add his parents'' birthdays into the calendar, then order groceries,
+    then schedule clinic visits for us...'
+  destroyString: '[Destroy]: My laptop is just a distraction. I should sell it and
+    stop losing time on games and shows.'

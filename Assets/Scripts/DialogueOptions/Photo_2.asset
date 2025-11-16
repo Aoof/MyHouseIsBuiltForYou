@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e38fafd3ff24dc4b369c63d9192500, type: 3}
+  m_Name: Photo_2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptions
+  changeString: '[Change]: I really want to hang out with them again... I promised
+    I won''t... But I''ll text them.'
+  destroyString: '[Destroy]: They keep slandering my boyfriend. I love him. I should''ve
+    stopped talking to them long ago.'
