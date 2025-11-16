@@ -14,7 +14,6 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private GameObject[] changedVariants;
     [Header("Dialogue Options")]
     [SerializeField] private DialogueOptions baseOptions;
-    [SerializeField] private DialogueOptions destroyedOptions;
     [SerializeField] private DialogueOptions[] changedOptions;
     [Header("References")]
     public PointsSystem pointsSystem;
@@ -80,7 +79,6 @@ public class InteractableObject : MonoBehaviour
     public DialogueOptions GetCurrentOptions()
     {
         if (currentVariant == baseVariant) return baseOptions;
-        if (currentVariant == destroyedVariant) return destroyedOptions;
         int index = System.Array.IndexOf(changedVariants, currentVariant);
         if (index >= 0 && index < changedOptions.Length) return changedOptions[index];
         return null;

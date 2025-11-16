@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
         ui.ShowDialogue();
         Cursor.lockState = CursorLockMode.None;
         DialogueOptions options = interactableObject.GetCurrentOptions();
+        Debug.Log("Dialogue Options: ", options);
         if (options != null)
         {
             buttonChange.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = options.changeString;
