@@ -296,7 +296,6 @@ GameObject:
   - component: {fileID: 9145468810089873566}
   - component: {fileID: 5824532683346262539}
   - component: {fileID: 186562407865498617}
-  - component: {fileID: 8560320626570949489}
   m_Layer: 0
   m_Name: Changed_2
   m_TagString: Untagged
@@ -396,20 +395,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8560320626570949489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4024144168791229068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e38fafd3ff24dc4b369c63d9192500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptions
-  changeString: 
-  destroyString: 
 --- !u!1 &5795229463341298975
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +445,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
   isInteractable: 1
   currentVariant: {fileID: 2762560681492189940}
+  baseVariant: {fileID: 0}
+  destroyedVariant: {fileID: 0}
+  changedVariants: []
+  baseOptions: {fileID: 0}
+  destroyedOptions: {fileID: 0}
+  changedOptions: []
   pointsSystem: {fileID: 0}
+  dialogueManager: {fileID: 0}
 --- !u!1 &6508775670809535510
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +465,6 @@ GameObject:
   - component: {fileID: 3616720998830653650}
   - component: {fileID: 2506870080305305343}
   - component: {fileID: 7046396882265371034}
-  - component: {fileID: 8856860756102808226}
   m_Layer: 0
   m_Name: Changed_1
   m_TagString: Untagged
@@ -573,20 +564,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8856860756102808226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6508775670809535510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e38fafd3ff24dc4b369c63d9192500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  changeString: 
-  destroyString: 
 --- !u!1 &7116745430464496973
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +611,6 @@ GameObject:
   - component: {fileID: 2773692229246771387}
   - component: {fileID: 7036044570074394886}
   - component: {fileID: 5810741642708271659}
-  - component: {fileID: 1023593179262196179}
   m_Layer: 0
   m_Name: Changed_3
   m_TagString: Untagged
@@ -734,20 +710,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1023593179262196179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7709010101922366722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e38fafd3ff24dc4b369c63d9192500, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueOptions
-  changeString: 
-  destroyString: 
 --- !u!1 &8452855569309000015
 GameObject:
   m_ObjectHideFlags: 0

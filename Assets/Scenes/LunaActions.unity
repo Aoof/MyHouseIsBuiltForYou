@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 406222828}
   - component: {fileID: 406222827}
   - component: {fileID: 406222826}
+  - component: {fileID: 406222829}
   m_Layer: 5
   m_Name: ChangeButton
   m_TagString: Untagged
@@ -419,8 +420,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 53.639}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -1.8041, y: 42.434986}
+  m_SizeDelta: {x: 323.6871, y: 38.8398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &406222826
 MonoBehaviour:
@@ -504,6 +505,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406222824}
   m_CullTransparentMesh: 1
+--- !u!114 &406222829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406222824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47157ad0d89d4e3eab5659de913149c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeButton
+  dialogueManager: {fileID: 2013026656}
 --- !u!1 &416662000
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,8 +530,9 @@ GameObject:
   - component: {fileID: 416662004}
   - component: {fileID: 416662003}
   - component: {fileID: 416662002}
+  - component: {fileID: 416662005}
   m_Layer: 5
-  m_Name: DiscardButton
+  m_Name: DestroyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,8 +555,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -1.8047, y: -7.7086}
+  m_SizeDelta: {x: 323.69, y: 38.2141}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416662002
 MonoBehaviour:
@@ -625,6 +640,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416662000}
   m_CullTransparentMesh: 1
+--- !u!114 &416662005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416662000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40862675d23e21bfea9367bef6b6f2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyButton
+  dialogueManager: {fileID: 0}
 --- !u!1 &929859043
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,8 +737,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -725,9 +753,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 0
+  m_TextWrappingMode: 2
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -773,6 +801,7 @@ GameObject:
   - component: {fileID: 1086914360}
   - component: {fileID: 1086914359}
   - component: {fileID: 1086914358}
+  - component: {fileID: 1086914361}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -843,7 +872,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1086914359}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2013026656}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: HideDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1086914359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,6 +923,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086914356}
   m_CullTransparentMesh: 1
+--- !u!114 &1086914361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086914356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711e29e91f974b4b3a072aba5266451c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackButton
 --- !u!1 &1158036347
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do nothing
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -966,8 +1019,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -982,9 +1035,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 2
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -1210,7 +1263,6 @@ GameObject:
   - component: {fileID: 1640119832}
   - component: {fileID: 1640119834}
   - component: {fileID: 1640119833}
-  - component: {fileID: 1640119835}
   m_Layer: 5
   m_Name: ActionPanel
   m_TagString: Untagged
@@ -1227,7 +1279,7 @@ RectTransform:
   m_GameObject: {fileID: 1640119831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 406222825}
@@ -1235,10 +1287,10 @@ RectTransform:
   - {fileID: 1086914357}
   m_Father: {fileID: 1522448747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 936.691, y: -586.7173}
-  m_SizeDelta: {x: -2369.0515, y: -1274.368}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -317.06}
+  m_SizeDelta: {x: 363.8257, y: 158.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1640119833
 MonoBehaviour:
@@ -1278,18 +1330,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640119831}
   m_CullTransparentMesh: 1
---- !u!114 &1640119835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640119831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 460c973b0abd14690827fdf02ba4f494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActionButtons
 --- !u!1 &2013026654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,10 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ea7620d1dddf0588ba4903448fa232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  dialogueTitle: 
-  textChange: 
-  textDiscard: 
-  textNothing: 
+  interactableObject: {fileID: 0}
   buttonChange: {fileID: 406222824}
   buttonDiscard: {fileID: 416662000}
   buttonNothing: {fileID: 1086914356}
@@ -1425,8 +1462,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1441,9 +1478,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 2
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0

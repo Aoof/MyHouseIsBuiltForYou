@@ -101,4 +101,8 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
 */.DS_Store
+.DS_Store
+*/.vscode
 .vscode
+*/.vsconfig
+.vsconfig

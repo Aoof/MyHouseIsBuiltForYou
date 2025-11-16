@@ -12,19 +12,15 @@ public class CameraController : MonoBehaviour
     public void Start()
     {
         orientation.rotation = transform.rotation;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void OnEnable()
     {
         lookAction = InputSystem.actions.FindAction("Look");
-        lookAction.Enable();
     }
 
     void OnDisable()
     {
-        lookAction.Disable();
     }
 
     public void Update()

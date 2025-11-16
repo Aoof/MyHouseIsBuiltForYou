@@ -15,12 +15,10 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-        moveAction.Enable();
     }
 
     void OnDisable()
     {
-        moveAction.Disable();
     }
 
     void Start()
