@@ -7,12 +7,14 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public string dialogueTitle;
+    public InteractableObject interactableObject; // The object the player is interacting with
+    public string dialogueTitle; // The name of the object
+    public string dialogueTask;
     
     public string textChange;
     public string textDiscard;
     public string textNothing;
-
+    
     public GameObject buttonChange;
     public GameObject buttonDiscard;
     public GameObject buttonNothing;
@@ -26,6 +28,7 @@ public class DialogueManager : MonoBehaviour
         buttonDiscard.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = textDiscard;
         buttonNothing.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = textNothing;
     }
+
 
     public void HideDialogue()
     {
