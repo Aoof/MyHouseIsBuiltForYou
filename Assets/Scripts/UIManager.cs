@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
         // Find UI references if not assigned
         if (taskMenu == null) taskMenu = FindFirstObjectByType<TaskMenu>()?.gameObject;
         if (dialogue == null) dialogue = FindFirstObjectByType<DialogueManager>()?.dialoguePanel;
-        if (judgement == null) judgement = FindFirstObjectByType<JudgementPanel>()?.gameObject;
+        if (judgement == null) judgement = FindFirstObjectByType<JudgementCanvas>()?.gameObject;
         // Get canvases
         playerCanvas = playerUi?.GetComponent<Canvas>();
         taskCanvas = taskMenu?.GetComponent<Canvas>();
@@ -62,10 +62,19 @@ public class UIManager : MonoBehaviour
         UnlockMouse();
     }
 
+    public void ShowJudgement()
+    {
+        HideAll();
+        if (judgement != null) judgement.SetActive(true);
+        isInUI = true;
+        UnlockMouse();
+    }
+
     public void HideAll()
     {
         if (taskMenu != null) taskMenu.SetActive(false);
         if (dialogue != null) dialogue.SetActive(false);
+        if (judgement != null) judgement.SetActive(false);
         isInUI = false;
         LockMouse();
     }

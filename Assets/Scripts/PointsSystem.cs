@@ -35,9 +35,12 @@ public class PointsSystem : MonoBehaviour
 
     public GameObject[] interactables;
 
+    public JudgementCanvas judgementCanvas;
+
     void Awake()
     {
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
+        if (judgementCanvas == null) judgementCanvas = FindFirstObjectByType<JudgementCanvas>();
     }
 
     void Start()
@@ -47,15 +50,20 @@ public class PointsSystem : MonoBehaviour
         currentActions = 0;
     }
 
+    public void StartNewDay()
+    {
+        stateHistory.Add(new DayHistory { Day = new List<ActionStruct>() });
+        currentDay++;
+        currentActions = 0;
+    }
+
     public void ActionPerformed()
     {
         currentActions++;
         if (currentActions >= tasksQuantity)
         {
             // End day, start new day
-            stateHistory.Add(new DayHistory { Day = new List<ActionStruct>() });
-            currentDay++;
-            currentActions = 0;
+            judgementCanvas.StartJudgement();
         }
     }
 

@@ -643,17 +643,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1196571352}
   m_SourcePrefab: {fileID: 100100000, guid: f4dc7bc8e65d73f4898c7b4256fd7fb0, type: 3}
---- !u!114 &450549304 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7825729862341196594, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-  m_PrefabInstance: {fileID: 1488324064512829812}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &473001802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -869,6 +858,7 @@ MonoBehaviour:
   - Change the boot
   - Destroy condoms
   interactables: []
+  judgementCanvas: {fileID: 0}
 --- !u!1 &676053928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,28 +1347,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8452855569309000015, guid: 6988d21b0d28b4348858dfd816d3ea3f, type: 3}
   m_PrefabInstance: {fileID: 1008707116}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1012924054 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6637807220424000696, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-  m_PrefabInstance: {fileID: 1488324064512829812}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &1014300735 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3589728358423195930, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-  m_PrefabInstance: {fileID: 1488324064512829812}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1135193671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,28 +1586,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 40, z: 128.55}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1338859476 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5557821668236257267, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-  m_PrefabInstance: {fileID: 1488324064512829812}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &1436481852 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2546085618827134189, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-  m_PrefabInstance: {fileID: 1488324064512829812}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1651389175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,17 +1655,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: f4dc7bc8e65d73f4898c7b4256fd7fb0, type: 3}
---- !u!114 &1692085056 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4981800048509122298, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-  m_PrefabInstance: {fileID: 1488324064512829812}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1739498655 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8391222552659086748, guid: f4dc7bc8e65d73f4898c7b4256fd7fb0, type: 3}
@@ -2072,17 +2007,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5493147076075680602, guid: f4dc7bc8e65d73f4898c7b4256fd7fb0, type: 3}
---- !u!114 &1967253943 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1366856137379659694, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-  m_PrefabInstance: {fileID: 1488324064512829812}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1983217196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2362,10 +2286,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 800304864910739462, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1355551346860884378, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -2414,38 +2334,6 @@ PrefabInstance:
       propertyPath: pointsSystem
       value: 
       objectReference: {fileID: 659681596}
-    - target: {fileID: 8404074601210104834, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: taskButtons.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8404074601210104834, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: 'taskButtons.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1338859476}
-    - target: {fileID: 8404074601210104834, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: 'taskButtons.Array.data[1]'
-      value: 
-      objectReference: {fileID: 450549304}
-    - target: {fileID: 8404074601210104834, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: 'taskButtons.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1967253943}
-    - target: {fileID: 8404074601210104834, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: 'taskButtons.Array.data[3]'
-      value: 
-      objectReference: {fileID: 1014300735}
-    - target: {fileID: 8404074601210104834, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: 'taskButtons.Array.data[4]'
-      value: 
-      objectReference: {fileID: 1692085056}
-    - target: {fileID: 8404074601210104834, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: 'taskButtons.Array.data[5]'
-      value: 
-      objectReference: {fileID: 1436481852}
-    - target: {fileID: 8404074601210104834, guid: 9584e14af15073b4eb36b5f2fae22986, type: 3}
-      propertyPath: 'taskButtons.Array.data[6]'
-      value: 
-      objectReference: {fileID: 1012924054}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

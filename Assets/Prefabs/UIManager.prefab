@@ -686,7 +686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3418457111430133649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1372,7 +1372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47157ad0d89d4e3eab5659de913149c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeButton
-  dialogueManager: {fileID: 1061594386813334827}
 --- !u!1 &1990175047354001740
 GameObject:
   m_ObjectHideFlags: 0
@@ -3284,6 +3283,10 @@ MonoBehaviour:
   - {fileID: 5557821668236257267}
   - {fileID: 7825729862341196594}
   - {fileID: 1366856137379659694}
+  - {fileID: 3589728358423195930}
+  - {fileID: 4981800048509122298}
+  - {fileID: 2546085618827134189}
+  - {fileID: 6637807220424000696}
   confirmButton: {fileID: 3795555393146685238}
 --- !u!1 &5548717675635940991
 GameObject:
@@ -4385,6 +4388,7 @@ GameObject:
   - component: {fileID: 4696194016830473144}
   - component: {fileID: 2122543890901251877}
   - component: {fileID: 7892679010628665524}
+  - component: {fileID: 6310131803128150240}
   m_Layer: 0
   m_Name: JudgementCanvas
   m_TagString: Untagged
@@ -4475,6 +4479,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6310131803128150240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8769277757556812356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a6cb9f028e07e4f8a8a65028458567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JudgementPanel
+  pointsSystem: {fileID: 0}
+  uIManager: {fileID: 0}
+  partnerText: {fileID: 4686189761608908204}
 --- !u!1 &8835881181800764677
 GameObject:
   m_ObjectHideFlags: 0
@@ -4609,4 +4628,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40862675d23e21bfea9367bef6b6f2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyButton
-  dialogueManager: {fileID: 1061594386813334827}
