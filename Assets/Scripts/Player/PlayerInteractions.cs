@@ -27,6 +27,11 @@ public class PlayerInteractions : MonoBehaviour
         interactAction.Disable();
     }
 
+    public void ResetCurrentColliding()
+    {
+        currentColliding = new List<InteractableObject>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("InteractableCollider"))
@@ -66,8 +71,16 @@ public class PlayerInteractions : MonoBehaviour
                     if (latestInteractable == io)
                     {
                         latestInteractable.isSelected = false;
-                        latestInteractable = currentColliding[currentColliding.Count - 1];
-                        latestInteractable.isSelected = true;
+                        if (currentColliding.Count > 0)
+                        {
+                            latestInteractable = currentColliding[currentColliding.Count - 1];
+                            latestInteractable.isSelected = true;
+                        }
+                        else 
+                        {
+                            playerUi.showInteract = false;
+                            latestInteractable = null;
+                        }
                     }
                 }
             }

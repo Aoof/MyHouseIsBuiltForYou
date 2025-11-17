@@ -29,11 +29,6 @@ public class InteractableObject : MonoBehaviour
             newAction.TaskName = dialogueManager.dialogueTask;
             pointsSystem.stateHistory[pointsSystem.currentDay].Day.Add(newAction);
             currentState = value;
-            
-            if (value == PointsSystem.ObjectState.Changed)
-            {
-
-            }
             pointsSystem.ActionPerformed();
         }
         get { return currentState; }
@@ -42,6 +37,14 @@ public class InteractableObject : MonoBehaviour
     public void ResetState()
     {
         currentState = PointsSystem.ObjectState.Unchanged;
+        isSelected = false;
+        if (currentVariant != destroyedVariant)
+        {
+            isInteractable = true;
+        } else
+        {
+            isInteractable = false;
+        }
     }
 
     void Awake()

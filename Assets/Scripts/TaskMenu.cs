@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TaskMenu : MonoBehaviour
@@ -13,16 +14,18 @@ public class TaskMenu : MonoBehaviour
     [SerializeField] private Button confirmButton;
     [SerializeField] private TextMeshProUGUI objectTitle;
 
-    float maxButtonWidth;
 
     [NonSerialized]
     public string selectedTask = "";
     public Action onTaskSelected;
     public static bool isReadOnly = false;
 
+    private InputAction escapeAction;
+
     void Awake()
     {
         if (playerInteractions == null) playerInteractions = FindFirstObjectByType<PlayerInteractions>();
+        escapeAction = InputSystem.actions.FindAction("Escape");
 
         pointsSystem = FindFirstObjectByType<PointsSystem>();
         if (pointsSystem == null)
@@ -35,26 +38,6 @@ public class TaskMenu : MonoBehaviour
             Debug.LogError("Task buttons not assigned!");
             return;
         }
-        maxButtonWidth = taskButtons[0].GetComponent<RectTransform>().sizeDelta.x;
-        // Setup task buttons
-        for (int i = 0; i < taskButtons.Length && i < pointsSystem.availableTasks.Count; i++)
-        {
-            int index = i;
-            var textComponent = taskButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-            if (textComponent != null)
-            {
-                textComponent.text = pointsSystem.availableTasks[i];
-            }
-            taskButtons[i].onClick.AddListener(() => OnTaskButtonClicked(index));
-            ResizeButton(taskButtons[i].gameObject);
-        }
-        // Disable unused task buttons
-        for (int i = pointsSystem.availableTasks.Count; i < taskButtons.Length; i++)
-        {
-            taskButtons[i].gameObject.SetActive(false);
-        }
-        confirmButton.GetComponentInChildren<TextMeshProUGUI>().text = "Confirm";
-        confirmButton.onClick.AddListener(OnConfirm);
         UpdateButtons();
     }
 
@@ -63,29 +46,41 @@ public class TaskMenu : MonoBehaviour
         selectedTask = "";
         isReadOnly = false;
         UpdateButtons();
-        
-        // Update ObjectTitle
-        //objectTitle.text = playerInteractions.latestInteractable.gameObject.name;
+        escapeAction.Enable();
     }
 
-    private void ResizeButton(GameObject button)
+    void OnDisable()
     {
-        var textComp = button.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        if (textComp != null)
+        escapeAction.Disable();
+    }
+
+    void Update()
+    {
+        if (!UIManager.instance.isInUI && escapeAction != null && escapeAction.WasPressedThisFrame())
         {
-            var textRect = textComp.GetComponent<RectTransform>();
-            textRect.sizeDelta = new Vector2(maxButtonWidth, textRect.sizeDelta.y);
-            textComp.textWrappingMode = TMPro.TextWrappingModes.Normal;
-            textComp.ForceMeshUpdate();
-            var buttonRect = button.GetComponent<RectTransform>();
-            buttonRect.sizeDelta = new Vector2(buttonRect.sizeDelta.x, textComp.preferredHeight);
+            ShowTaskMenu(true);
         }
     }
 
     public void UpdateButtons()
     {
+        for (int i = 0; i < taskButtons.Length; i++)
+        {
+            taskButtons[i].gameObject.SetActive(true);
+        }
+
         for (int i = 0; i < taskButtons.Length && i < pointsSystem.availableTasks.Count; i++)
         {
+            var textComponent = taskButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                textComponent.text = pointsSystem.availableTasks[i];
+            }
+            int index = i;
+            taskButtons[i].onClick.RemoveAllListeners();
+            taskButtons[i].onClick.AddListener(() => OnTaskButtonClicked(index));
+
+
             var imageComponent = taskButtons[i].GetComponent<Image>();
             if (imageComponent != null)
             {
@@ -99,9 +94,30 @@ public class TaskMenu : MonoBehaviour
                 }
             }
             taskButtons[i].interactable = !isReadOnly;
+
+            if (pointsSystem.currentDay >= 0 && pointsSystem.currentDay < pointsSystem.stateHistory.Count)
+            {
+                for (int j = 0; j < pointsSystem.stateHistory[pointsSystem.currentDay].Day.Count; j++)
+                {
+                    PointsSystem.ActionStruct dayAction = pointsSystem.stateHistory[pointsSystem.currentDay].Day[j];
+                    if (dayAction.TaskName == pointsSystem.availableTasks[i])
+                    {
+                        // taskButtons[i].gameObject.SetActive(false);
+                        taskButtons[i].interactable = false;
+                    }
+                }
+            }
         }
+
+        for (int i = pointsSystem.availableTasks.Count; i < taskButtons.Length; i++)
+        {
+            taskButtons[i].gameObject.SetActive(false);
+        }
+
         confirmButton.gameObject.SetActive(!isReadOnly);
         confirmButton.interactable = !isReadOnly;
+        confirmButton.onClick.RemoveAllListeners();
+        confirmButton.onClick.AddListener(OnConfirm);
     }
 
     void OnTaskButtonClicked(int index)
@@ -136,6 +152,13 @@ public class TaskMenu : MonoBehaviour
         UIManager.instance.ShowTaskMenu();
         selectedTask = "";
         isReadOnly = readOnly;
+        if (isReadOnly)
+        {
+            objectTitle.text = "TASKS FOR TODAY: PRESS ESC TO GET THIS MENU";
+        } else
+        {
+            objectTitle.text = "SELECT TASK";
+        }
         UpdateButtons();
     }
 

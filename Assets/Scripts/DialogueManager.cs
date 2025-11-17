@@ -69,14 +69,16 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-
     public void HideDialogue()
     {
         UIManager.instance.HideAll();
+        PlayerInteractions pi = FindFirstObjectByType<PlayerInteractions>();
+        if (pi != null) pi.ResetCurrentColliding();
     }
 
     public void OnChangeClicked()
     {
+        HideDialogue();
         interactableObject.ChangeVariant();
         interactableObject.CurrentState = PointsSystem.ObjectState.Changed;
         interactableObject.isInteractable = false;
@@ -85,11 +87,11 @@ public class DialogueManager : MonoBehaviour
         {
             playerUi.showInteract = false;
         }
-        HideDialogue();
     }
 
     public void OnDestroyClicked()
     {
+        HideDialogue();
         interactableObject.DestroyVariant();
         interactableObject.CurrentState = PointsSystem.ObjectState.Destroyed;
         interactableObject.isInteractable = false;
@@ -98,7 +100,6 @@ public class DialogueManager : MonoBehaviour
         {
             playerUi.showInteract = false;
         }
-        HideDialogue();
     }
 
     public void OnNothingClicked()

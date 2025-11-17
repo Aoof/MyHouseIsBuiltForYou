@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,12 +12,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TaskMenu taskManager;
     [SerializeField] private GameObject dialogue;
     [SerializeField] private GameObject judgement;
-    [SerializeField] private TMPro.TextMeshProUGUI dayText;
+    [SerializeField] private GameObject dayTeller;
+    private CanvasGroup dayCanvasGroup;
 
-    private Canvas playerCanvas;
-    private Canvas taskCanvas;
-    private Canvas dialogueCanvas;
-    private Canvas judgementCanvas;
+    private float dayTimer = 0f;
+    private float taskTimer = 0f;
+    private float fadeTimer = 0f;
+    private bool isShowingDay = false;
+    private bool isFadingIn = false;
+    private bool isFadingOut = false;
+    private bool isShowingTask = false;
+    private float fadeDuration = 1f;
 
     public bool isInUI { get; private set; }
 
@@ -33,16 +38,17 @@ public class UIManager : MonoBehaviour
         // Ensure playerUi is always active
         if (playerUi != null) playerUi.SetActive(true);
         // Find UI references if not assigned
-        if (taskMenu == null) taskMenu = FindFirstObjectByType<TaskMenu>()?.gameObject;
+        if (taskMenu == null) taskMenu = FindFirstObjectByType<TaskMenu>().gameObject;
         if (taskManager == null) taskManager = FindFirstObjectByType<TaskMenu>();
         if (taskMenu == null && taskManager != null) taskMenu = taskManager.gameObject;
-        if (dialogue == null) dialogue = FindFirstObjectByType<DialogueManager>()?.dialoguePanel;
-        if (judgement == null) judgement = FindFirstObjectByType<JudgementCanvas>()?.gameObject;
+        if (dialogue == null) dialogue = FindFirstObjectByType<DialogueManager>().dialoguePanel;
+        if (judgement == null) judgement = FindFirstObjectByType<JudgementManager>().gameObject;
         // Get canvases
-        playerCanvas = playerUi?.GetComponent<Canvas>();
-        taskCanvas = taskMenu?.GetComponent<Canvas>();
-        dialogueCanvas = dialogue?.GetComponent<Canvas>();
-        judgementCanvas = judgement?.GetComponent<Canvas>();
+        dayCanvasGroup = dayTeller?.GetComponent<CanvasGroup>();
+        if (dayCanvasGroup == null && dayTeller != null)
+        {
+            dayCanvasGroup = dayTeller.AddComponent<CanvasGroup>();
+        }
         // Find input actions
         interactAction = InputSystem.actions.FindAction("Interact");
         moveAction = InputSystem.actions.FindAction("Move");
@@ -50,24 +56,63 @@ public class UIManager : MonoBehaviour
         escapeAction = InputSystem.actions.FindAction("Escape");
     }
 
+    void Update()
+    {
+        if (isFadingIn)
+        {
+            fadeTimer += Time.deltaTime;
+            if (dayCanvasGroup != null)
+            {
+                dayCanvasGroup.alpha = Mathf.Lerp(0f, 1f, fadeTimer / fadeDuration);
+            }
+            if (fadeTimer >= fadeDuration)
+            {
+                isFadingIn = false;
+                isShowingDay = true;
+                dayTimer = 0f;
+            }
+        }
+        else if (isShowingDay)
+        {
+            dayTimer += Time.deltaTime;
+            if (dayTimer >= 2f || (escapeAction != null && escapeAction.WasPressedThisFrame()))
+            {
+                isShowingDay = false;
+                isFadingOut = true;
+                fadeTimer = 0f;
+            }
+        }
+        else if (isFadingOut)
+        {
+            fadeTimer += Time.deltaTime;
+            if (dayCanvasGroup != null)
+            {
+                dayCanvasGroup.alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
+            }
+            if (fadeTimer >= fadeDuration)
+            {
+                isFadingOut = false;
+                dayTeller.SetActive(false);
+                FindFirstObjectByType<TaskMenu>().ShowTaskMenu(true);
+                taskTimer = 0f;
+                isShowingTask = true;
+            }
+        }
+        else if (isShowingTask)
+        {
+            taskTimer += Time.deltaTime;
+            if (taskTimer >= 5f || (escapeAction != null && escapeAction.WasPressedThisFrame()))
+            {
+                isShowingTask = false;
+                HideAll();
+            }
+        }
+    }
+
     public void ShowTaskMenu()
     {
         HideAll();
-        TaskMenu.isReadOnly = false;
         if (taskMenu != null) taskMenu.SetActive(true);
-        isInUI = true;
-        UnlockMouse();
-    }
-
-    public void ShowTaskMenuReadOnly()
-    {
-        HideAll();
-        if (taskManager != null)
-        {
-            taskMenu.SetActive(true);
-            TaskMenu.isReadOnly = true;
-            taskManager.UpdateButtons();
-        }
         isInUI = true;
         UnlockMouse();
     }
@@ -75,11 +120,12 @@ public class UIManager : MonoBehaviour
     public void ShowDayText(int dayNumber)
     {
         HideAll();
-        if (dayText != null)
-        {
-            dayText.gameObject.SetActive(true);
-            dayText.text = $"Day {dayNumber + 1}";
-        }
+        TextMeshProUGUI dayText = dayTeller.GetComponentInChildren<TextMeshProUGUI>();
+        dayText.text = $"Day {dayNumber + 1}";
+        dayTeller.SetActive(true);
+        dayCanvasGroup.alpha = 0f;
+        isFadingIn = true;
+        fadeTimer = 0f;
         isInUI = true;
         UnlockMouse();
     }
@@ -87,42 +133,13 @@ public class UIManager : MonoBehaviour
     public void StartDaySequence(int dayNumber)
     {
         UnlockMouse();
-        StartCoroutine(DaySequenceCoroutine(dayNumber));
-    }
-
-    private IEnumerator DaySequenceCoroutine(int dayNumber)
-    {
         ShowDayText(dayNumber);
-        yield return new WaitForSeconds(2f); // Show day for 2 seconds
-        ShowTaskMenuReadOnly();
-        float timer = 0f;
-        while (timer < 5f) // Show for 5 seconds or until escape
-        {
-            timer += Time.deltaTime;
-            if (escapeAction != null && escapeAction.WasPressedThisFrame())
-            {
-                break;
-            }
-            yield return null;
-        }
-        if (taskMenu.activeSelf && TaskMenu.isReadOnly)
-        {
-            HideAll();
-        }
     }
 
     public void ShowJudgement()
     {
         HideAll();
-        if (judgement != null)
-        {
-            judgement.SetActive(true);
-            Debug.Log("Judgement UI shown, unlocking mouse");
-        }
-        else
-        {
-            Debug.LogError("Judgement UI not assigned!");
-        }
+        if (judgement != null) judgement.SetActive(true);
         isInUI = true;
         UnlockMouse();
     }
@@ -140,7 +157,7 @@ public class UIManager : MonoBehaviour
         if (taskMenu != null) taskMenu.SetActive(false);
         if (dialogue != null) dialogue.SetActive(false);
         if (judgement != null) judgement.SetActive(false);
-        if (dayText != null) dayText.gameObject.SetActive(false);
+        if (dayTeller != null) dayTeller.SetActive(false);
         isInUI = false;
         LockMouse();
     }

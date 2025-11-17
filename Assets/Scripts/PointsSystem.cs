@@ -35,7 +35,6 @@ public class PointsSystem : MonoBehaviour
 
     [Header("Game State")]
     public int currentDay = 0;
-    public int tasksQuantity => availableTasks.Count;
     public int currentActions = 0;
 
     [Header("Tasks")]
@@ -53,16 +52,13 @@ public class PointsSystem : MonoBehaviour
 
     public GameObject[] interactables;
 
-    public JudgementCanvas judgementCanvas;
+    public JudgementManager judgementManager;
 
-    public Dictionary<string, bool> dailyTaskResults;
-    public int dayScore;
-    public int totalScore;
 
     void Awake()
     {
         interactables = GameObject.FindGameObjectsWithTag("Interactable");
-        if (judgementCanvas == null) judgementCanvas = FindFirstObjectByType<JudgementCanvas>();
+        if (judgementManager == null) judgementManager = FindFirstObjectByType<JudgementManager>();
     }
 
     void Start()
@@ -71,6 +67,8 @@ public class PointsSystem : MonoBehaviour
         currentDay = 0;
         currentActions = 0;
         UIManager.instance.StartDaySequence(currentDay);
+        ResetInteractables();
+        FindFirstObjectByType<TaskMenu>().UpdateButtons();
     }
 
     public void StartNewDay()
@@ -79,31 +77,19 @@ public class PointsSystem : MonoBehaviour
         currentDay++;
         currentActions = 0;
         UIManager.instance.StartDaySequence(currentDay);
+        ResetInteractables();
+        FindFirstObjectByType<TaskMenu>().UpdateButtons();
     }
 
     public void ActionPerformed()
     {
         currentActions++;
-        if (currentActions >= tasksQuantity)
+        if (currentActions >= dayTasks[currentDay].tasks.Count)
         {
-            judgementCanvas.StartJudgement();
+            judgementManager.StartJudgement();
         }
     }
-
-    public void CheckResults()
-    {
-        foreach (string taskName in availableTasks)
-        {
-            foreach (ActionStruct action in stateHistory[currentDay].Day)
-            {
-                if (action.TaskName == taskName)
-                {
-                    
-                }
-            }
-        }
-    }
-
+    
     public string GetJudgementText()
     {
         if (dayTasks == null || currentDay >= dayTasks.Length || dayTasks[currentDay] == null)
