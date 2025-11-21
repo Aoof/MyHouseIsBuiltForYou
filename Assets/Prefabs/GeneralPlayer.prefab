@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 6080038545405394829}
   - component: {fileID: 7983923250566293102}
   - component: {fileID: 642129202594852632}
+  - component: {fileID: 7209095223405912809}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -429,6 +430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 30
   orientation: {fileID: 7222184674887415807}
+  Movement: {x: 0, y: 0}
 --- !u!114 &6080038545405394829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,3 +560,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9bea08e14a9f4f299ada884d9de39054, type: 3}
   - {fileID: 8300000, guid: 7a5a7ee560e4beb67b34f9afb455c66f, type: 3}
   StepInterval: 0.5
+--- !u!114 &7209095223405912809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379367030975575478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251637b08d3248a4ea22a96c381c3637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeadBobController
+  Enabled: 1
+  amplitude: 0.0436
+  frequency: 10
+  camera: {fileID: 6575628370085059367}
+  cameraHolder: {fileID: 8737107647744840557}
