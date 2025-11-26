@@ -13,12 +13,12 @@ public class DialogueManager : MonoBehaviour
     public string dialogueTask;
     
     [NonSerialized]
-    public string textNothing = "Back";
+    public string textBack = "Back";
     
     [Header("UI Elements")]
     [SerializeField] private GameObject buttonChange;
     [SerializeField] private GameObject buttonDestroy;
-    [SerializeField] private GameObject buttonNothing;
+    [SerializeField] private GameObject buttonBack;
 
     public GameObject dialoguePanel => buttonChange?.transform.parent.gameObject;
 
@@ -30,7 +30,7 @@ public class DialogueManager : MonoBehaviour
         maxButtonWidth = buttonChange.GetComponent<RectTransform>().sizeDelta.x;
         buttonChange.GetComponent<Button>().onClick.AddListener(OnChangeClicked);
         buttonDestroy.GetComponent<Button>().onClick.AddListener(OnDestroyClicked);
-        buttonNothing.GetComponent<Button>().onClick.AddListener(OnNothingClicked);
+        buttonBack.GetComponent<Button>().onClick.AddListener(OnNothingClicked);
     }
 
     void Awake()
@@ -48,7 +48,7 @@ public class DialogueManager : MonoBehaviour
             buttonChange.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = options.changeString;
             buttonDestroy.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = options.destroyString;
         }
-        buttonNothing.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = textNothing;
+        buttonBack.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = textBack;
 
         // Resize buttons to fit text with wrapping
         ResizeButton(buttonChange);

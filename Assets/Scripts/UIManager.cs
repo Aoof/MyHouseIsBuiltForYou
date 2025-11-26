@@ -37,12 +37,6 @@ public class UIManager : MonoBehaviour
 
         // Ensure playerUi is always active
         if (playerUi != null) playerUi.SetActive(true);
-        // Find UI references if not assigned
-        if (taskMenu == null) taskMenu = FindFirstObjectByType<TaskMenu>().gameObject;
-        if (taskManager == null) taskManager = FindFirstObjectByType<TaskMenu>();
-        if (taskMenu == null && taskManager != null) taskMenu = taskManager.gameObject;
-        if (dialogue == null) dialogue = FindFirstObjectByType<DialogueManager>().dialoguePanel;
-        if (judgement == null) judgement = FindFirstObjectByType<JudgementManager>().gameObject;
         // Get canvases
         dayCanvasGroup = dayTeller?.GetComponent<CanvasGroup>();
         if (dayCanvasGroup == null && dayTeller != null)
